@@ -1,15 +1,11 @@
 <template>
   <div class="container h-screen bg-lightBlue">
-    <LogoVue />
-    <SignInVue />
+
+    <RouterView/>
   </div>
+
 </template>
 
 <script setup>
-  import SignInVue from "./components/SignIn.vue";
-  import LogoVue from "./components/LogoView.vue";
+import { RouterLink, RouterView } from 'vue-router'
 </script>
-
-<style>
-
-</style>
