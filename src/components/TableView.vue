@@ -1,6 +1,17 @@
 <template>
-    <section>
+    <section class="">
         <div class="pt-10">
+            <div class="flex justify-between">
+                <div class="rounded-full bg-gray-300">
+                    <img src="../assets/diftrak.png" alt="profile image" class="w-10">
+                </div>
+                <div class="">
+                   <i class="fa-solid fa-bars text-2xl text-white"></i>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="text-center text-white">Good Morning Gracious</p>
+            </div>
             <div class="flex bg-gray-200 mb-5 rounded-lg">
                 <div class="flex flex-1">
                     <img src="../assets/diftrak.png" alt="" class="w-40">
@@ -45,7 +56,7 @@
                         <input type="text" placeholder="Add Amount" name="" id="password" class="p-2 rounded-lg bg-gray-300 ">
                     </div>
                     <div class="flex justify-center items-center pb-5">
-                        <button class="bg-secondaryColor p-2 hover:bg-orange-600 ease-linear duration-150 w-full rounded-lg text-2xl text-white">Add +</button>
+                        <button class="bg-secondaryColor p-2 hover:bg-orange-600 ease-linear duration-150 w-full rounded-lg text-xl text-white">Add Service <i class="fa-solid fa-plus"></i></button>
                     </div>
                     
                     
