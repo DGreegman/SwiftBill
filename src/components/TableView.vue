@@ -58,9 +58,10 @@
                     <div class="flex justify-center items-center pb-5">
                         <button class="bg-secondaryColor p-2 hover:bg-orange-600 ease-linear duration-150 w-full rounded-lg text-xl text-white">Add Service <i class="fa-solid fa-plus"></i></button>
                     </div>
-                    
-                    
                 </form>
+                    <div class="flex justify-center items-center pb-5">
+                        <button class="p-3 bg-gray-300 rounded-lg">Download PDF <i class="fa-solid fa-circle-down text-secondaryColor text-xl"></i></button>
+                    </div>
             </div>
         </div>
     </section>
