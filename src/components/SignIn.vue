@@ -25,7 +25,7 @@
                 <div class="flex justify-evenly mb-2 py-4">
                     <!-- <span>Forget Password?</span>
                     <span><a href="#">Sign Up</a></span> -->
-                    <router-link :to="{ name: 'SwiftList'}">Swift List</router-link> 
+                    <router-link :to="{ name: 'SwiftList'}">Create Bill</router-link> 
                     <router-link :to="{ name: 'SignUp'}">Sign Up </router-link>
                 </div>
             </form>
