@@ -1,6 +1,8 @@
 <template>
       <section class="text-white">
         <div class="p-4">
+             <Header />
+            <LogoView/>
             <form action="" class="mt-3 font-nunito  text-base font-bold">
                 <div class="flex flex-col pb-5 ">
                     <label for="first_name" class="   pb-2">FirstName</label>
@@ -41,5 +43,7 @@
 </template>
 
 <script setup>
+    import Header from "../components/Header.vue";
+    import LogoView  from "../components/LogoView.vue";
 
 </script>

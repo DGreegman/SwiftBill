@@ -1,16 +1,15 @@
 <template>
     <section class="">
         <div class="pt-10">
-            <div class="flex justify-between">
-                <div class="rounded-full bg-gray-300">
-                    <img src="../assets/diftrak.png" alt="profile image" class="w-10">
-                </div>
-                <div class="">
-                   <i class="fa-solid fa-bars text-2xl text-white"></i>
-                </div>
-            </div>
+            
+            <Header />
+
             <div class="mb-4">
                 <p class="text-center text-white">Good Morning Gracious</p>
+            </div>
+            <div class="mb-4">
+
+                <RouterLink to="/" class="text-white">Back</RouterLink>
             </div>
             <div class="flex bg-gray-200 mb-5 rounded-lg">
                 <div class="flex flex-1">
@@ -30,11 +29,15 @@
                     </tr>
                     </thead>
                     <tbody class="bg-gray-300 divide-y divide-gray-200">
-                    <tr v-for="service in services" :key="service.id">
-                        <td class="px-2 py-4">{{service.services}}</td>
-                        <td class="px-2 py-4">${{service.amount}}</td>
-                        <td class="px-2 py-4"><i class="fa-solid fa-trash-can" @click="trash(service.id)"></i></td>
-                    </tr>
+                        <tr v-for="service in services" :key="service.id">
+                            <td class="px-2 py-4">{{service.services}}</td>
+                            <td class="px-2 py-4">${{service.amount}}</td>
+                            <td class="px-4 py-4"><i class="fa-solid fa-trash-can" @click="trash(service.id)"></i></td>
+                        </tr>
+                        <tr class="bg-gray-300" v-show="totalShow">
+                            <td class="px-2 py-4" colspan="2">Total</td>
+                            <td class="px-2 py-4" colspan="1">${{ total }}</td>
+                        </tr>
                     <!-- <tr>
                         <td class="px-2 py-4">Domain</td>
                         <td class="px-2 py-4">$200</td>
@@ -63,6 +66,7 @@
                         <button class="p-3 bg-gray-300 rounded-lg">Download PDF <i class="fa-solid fa-circle-down text-secondaryColor text-xl"></i></button>
                     </div>
             </div>
+            
         </div>
     </section>
 
@@ -72,9 +76,16 @@
 
 <script setup>
     import { ref, computed, onMounted } from "vue";
+    import { RouterLink } from 'vue-router'
+    import { useToast } from 'vue-toastification'
+    import Header from '../components/Header.vue'
 
-    const amount = ref(null)
-    const text = ref(null)
+    const toast = useToast()
+
+    const amount = ref('')
+    const text = ref('')
+    const onlyLettersRegex = /^[A-Za-z]+$/;
+    let totalShow = false
 
     const services = ref([])
 
@@ -85,29 +96,49 @@
         }
     })
 
+    const total = computed(() =>{
+    if(text.value == '' && amount.value == ''){
+        totalShow = false
+    }
+    return services.value.reduce((acc, service) =>{
+        totalShow = true
+        return acc + service.amount
+    },0).toFixed(2)
+    
+})
     // create service
     const onSubmit = () => {
         if(!amount.value || !text.value){
-            alert('You must add value to both field')
+            // alert('You must add value to both field')
+            toast.error('You must add value to both field')
+            return
+        }
+        if(!onlyLettersRegex.test(text.value)){
+            toast.error('We only accept texts here')
+            // toast.error('We only accept texts here')
             return
         }
         if (isNaN(amount.value)) {
-            alert('You have to add a number in the amount field')
+            // alert('You have to add a number in the amount field')
+            toast.error('You have to add a number in the amount field')
             return
         }
 
         services.value.push({
             id: generateUniqueId(),
             services: text.value,
-            amount: amount.value
+            amount: parseFloat(amount.value)
         })
         saveServiceToLocalStorage()
+        toast.success('Service Added Successfully...')
         text.value = ''
         amount.value = ''
         
     }
+
+
     const generateUniqueId = () =>  Math.floor(Math.random() * 1000000)
-    console.log(generateUniqueId())
+    // console.log(generateUniqueId())
 
     // save to localStorage
     const saveServiceToLocalStorage = () =>{

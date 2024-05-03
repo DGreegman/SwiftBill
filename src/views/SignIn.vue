@@ -1,7 +1,10 @@
 <template>
-<LogoView/>
+
       <section class="text-white">
+
         <div class="p-4">
+                <Header />
+                <LogoView/>
             <form action="" class="mt-3 font-nunito  text-base font-bold">
                 <div class="flex flex-col pb-5 ">
                     <label for="email" class="   pb-2">Email</label>
@@ -34,7 +37,7 @@
 </template>
 
 <script setup>
-    import LogoViewVue from './LogoView.vue'
-import SignUp from './SignUp.vue'
-    import LogoView from './LogoView.vue'
+    import SignUp from '../views/SignUp.vue'
+    import LogoView from '../components/LogoView.vue'
+    import Header from '../components/Header.vue'
 </script>
