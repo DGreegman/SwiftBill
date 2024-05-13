@@ -113,7 +113,7 @@
             toast.error('You must add value to both field')
             return
         }
-        if(!onlyLettersRegex.test(text.value)){
+        if(!onlyLettersRegex.test(text.value)){0
             toast.error('We only accept texts here')
             // toast.error('We only accept texts here')
             return
