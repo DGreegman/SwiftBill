@@ -5,7 +5,7 @@
             <Header />
 
             <div class="mb-4">
-                <p class="text-center text-white">Good Morning Gracious</p>
+                <p class="text-center text-white" v-text="greeting"></p> 
             </div>
             <div class="mb-4">
 
@@ -84,6 +84,7 @@
 
     const amount = ref('')
     const text = ref('')
+    const greeting = ref('')
     const onlyLettersRegex = /^[A-Za-z]+$/;
     let totalShow = false
 
@@ -151,5 +152,27 @@
         services.value = services.value.filter((service) => service.id !==id)
         saveServiceToLocalStorage()
     }
+
+    const greetUser = () => {
+        // Get the current hour
+        const currentTime = new Date();
+        const currentHour = currentTime.getHours();
+
+        // Define the greeting based on the time of day
+        if (currentHour < 12) {
+            greeting.value = "Good morning! Gracious";
+        } else if (currentHour < 18) {
+            greeting.value = "Good afternoon! Gracious";
+        } else {
+            greeting.value = "Good evening! Gracious";
+        }
+
+        // Return the greeting
+        return greeting;
+    }
+    onMounted(() =>{
+        greetUser()
+    })
+
 </script>
 
