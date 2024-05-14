@@ -32,7 +32,7 @@
                         <tr v-for="service in services" :key="service.id">
                             <td class="px-2 py-4">{{service.services}}</td>
                             <td class="px-2 py-4">${{service.amount}}</td>
-                            <td class="px-4 py-4"><i class="fa-solid fa-trash-can" @click="trash(service.id)"></i></td>
+                            <td class="px-4 py-4 cursor-pointer"><i class="fa-solid fa-trash-can" @click="trash(service.id)"></i></td>
                         </tr>
                         <tr class="bg-gray-300" v-show="totalShow">
                             <td class="px-2 py-4" colspan="2">Total</td>
@@ -85,7 +85,7 @@
     const amount = ref('')
     const text = ref('')
     const greeting = ref('')
-    const onlyLettersRegex = /^[A-Za-z]+$/;
+    const onlyLettersRegex = /^[A-Z a-z ]+$/;
     let totalShow = false
 
     const services = ref([])
